@@ -1,0 +1,9 @@
+{
+  "server": {
+    "port": 3000,
+    "debug": false
+  },
+  "mysql": {
+    "db": "msyql://localhost"
+  }
+}

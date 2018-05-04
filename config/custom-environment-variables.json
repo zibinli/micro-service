@@ -1,0 +1,9 @@
+{
+    "server": {
+        "port": "NODE_PORT",
+        "debug": "NODE_ENV"
+    },
+    "mysql": {
+        "db": "HAOWAN24_MYSQL_DB"
+    }
+}
