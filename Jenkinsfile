@@ -1,11 +1,5 @@
 pipeline {
-    agent {
-        label 'docker'
-    }
-
-    environment {
-        NODE_PORT = 3200
-    }
+    agent any
 
     stages {
         stage('Build') {
@@ -23,25 +17,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when { branch 'master' }
-            steps {
-                script {
-                    def name = 'micro-service'
-                    def registry = 'https://registry.cn-shenzhen.aliyuncs.com'
-                    def namespace = '24haowan'
-                    echo "Deploying to ${name} in ${registry}"
-                    docker.withRegistry(registry) {
-                        def image = docker.build("${namespace}/${name}:${env.BUILD_ID}")
-
-                        image.inside {
-                          sh 'yarn --prod=false'
-                          sh 'yarn test'
-                        }
-                        image.push()
-                        image.push('latest')
-                    }
-                }
-            }
+            echo 'Deploying'
         }
     }
 }
